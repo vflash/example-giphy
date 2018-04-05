@@ -1,0 +1,89 @@
+@import ../inc.sass
+$b: 'FmScrollBox'
+
+$FmScrollBox-colorTrack: rgba(#5f696d, 0.16) !default;
+$FmScrollBox-colorThumb: $colorMark !default;
+
+
++block
+  position: relative
+  overflow: hidden
+  min-height: 4px
+
++b('wrap')
+  overflow-x: hidden
+  overflow-y: scroll
+  min-height: inherit
+  max-height: inherit
+  height: inherit
+  margin-right: -30px
+  padding-right: 13px
+
+  -webkit-overflow-scrolling: touch
+  overflow-scrolling: touch
+  -ms-overflow-style: none
+
+  &:hover +
+    +b('scrollbar-y-track')
+      opacity: 0.36
+
+  &::-webkit-scrollbar
+    width: 17px
+
+@supports (-ms-overflow-style: none)
+  +b('wrap')
+    margin-right: -13px
+
++b('box')
+  position: relative
+  overflow: hidden
+
++b('scrollbar-y-track')
+  pointer-events: none
+  border-radius: 5px
+  position: absolute
+  overflow: hidden
+  bottom: 5px
+  right: 4px
+  top: 5px
+  width: 3px
+  opacity: 0
+  -webkit-transition: opacity 0.2s
+  transition: opacity 0.2s
+
+  transform: scale3d(1, 1, 1)
+
+  &.-theme-light
+    background-color: rgba(#fff, 0.12)
+  &.-theme-dark
+    background-color: $FmScrollBox-colorTrack
+
+  &.-show, &[data-scroll=show], &[class]:hover
+    overflow: visible
+    opacity: 0.6
+
+    +b('scrollbar-y-thumb')
+      width: 5px
+      left: -1px
+
+  &:not(:hover):not([data-scroll="show"])
+    &.-theme-light
+      background-color: rgba(#fff, 0)
+    &.-theme-dark
+      background-color: rgba(#000, 0)
+
+
++b('scrollbar-y-thumb')
+  pointer-events: auto
+  border-radius: inherit
+  position: absolute
+  padding: inherit
+  width: inherit
+  left: 0
+  user-select: none
+
+  &.-theme-light
+    background-color: rgba(#fff, 0.26)
+  &.-theme-dark
+    background-color: $FmScrollBox-colorThumb
+

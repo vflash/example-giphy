@@ -1,0 +1,22 @@
+@import ../inc.sass
+$b: 'FeedGiphyGrid'
+
+
++block
+  flex-wrap: nowrap
+  display: flex
+
++b(column)
+  flex:  1 1 100px
+  &:not(:first-child)
+    margin-left: 10px
+
++b(image)
+  background-color: #f0f0f0
+  background-size: contain
+  display: block
+
+  &:not(:first-child)
+    margin-top: 10px
+
+

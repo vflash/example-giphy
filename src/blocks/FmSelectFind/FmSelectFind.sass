@@ -1,0 +1,38 @@
+@import ../inc.sass
+$b: 'FmSelectFind'
+
+
++block
+  &--pointer[class][class]
+    cursor: pointer
+  &--disabled[class][class]
+    cursor: default
+
+  &:before
+    content: ""
+
+    background-repeat: no-repeat
+    background-image: url(./icon-select.svg)
+    background-size: contain
+    position: absolute
+    opacity: 0.5
+    margin: auto
+    height: 20px
+    width: 11px
+    bottom: 0
+    right: 14px
+    top: 0
+
+
+
+  &--disabled:before
+    opacity: 0.3
+
+
++b(padRight)
+  padding-right: 38px
+
++b(options)
+  border-radius: 4px
+  max-height: 238px
+  //margin: 1px 0

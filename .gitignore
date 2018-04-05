@@ -1,0 +1,15 @@
+/nginx-*
+/.sass-cache/
+*.sass.css
+*..sass
+*..scss
+*..css
+*..js
+out/
+
+*.DS_Store
+node_modules/
+build/
+logs/
+log/
+*/.editorconfig

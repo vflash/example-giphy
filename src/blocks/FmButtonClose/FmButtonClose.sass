@@ -1,0 +1,66 @@
+@import ../inc.sass
+$b: 'FmButtonClose'
+
+
++block
+  border-radius: 26px
+  position: absolute
+  cursor: pointer
+
+  outline: 0 none
+  padding: 0
+  border: 0 none
+
+  background-color: #ffffff
+  box-shadow: 0 4px 5px 0 rgba(64, 106, 128, 0.15)
+  border: solid 1px #ededed
+
+  &--size-medium
+    margin: -18px -18px 0 0
+    height: 36px
+    width: 36px
+
+  &--size-small
+    margin: -13px -13px 0 0
+    height: 26px
+    width: 26px
+
+  &::-moz-focus-inner
+    padding: 0
+    border: 0
+
+  &.-focus, &:hover
+    border-color: darken($colorMark, 4%)
+
+  &:not(:hover):not(.-focus)
+    +b(icon)
+      transition: opacity 0.3s
+      opacity: 0.64
+
+
++b(icon)
+  border-radius: inherit
+  background-position: 50% 50%
+  background-repeat: no-repeat
+  background-image: url("./icon-delete.svg")
+  position: absolute
+  margin: auto
+  bottom: 0
+  right: 0
+  left: 0
+  top: 0
+
+  &--size-medium
+    background-size: 14px auto
+  &--size-small
+    background-size: 10px auto
+
+  &.-wait
+    animation: b(progress) 1.5s linear 0s infinite normal
+    opacity: 0.9
+
+@keyframes #{b(progress)}
+  from
+    transform: rotate(0deg)
+  to
+    transform: rotate(360deg)

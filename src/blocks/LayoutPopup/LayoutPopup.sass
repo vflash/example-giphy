@@ -1,0 +1,72 @@
+@import ../inc.sass
+$b: 'LayoutPopup'
+
+
+
++block
+  min-height: 100vh
+
+  &[class]
+    white-space: nowrap
+    text-align: center
+
+  &[class]:before
+    content: ""
+    display: inline-block
+    max-height: calc(100vh - 40px)
+    height: 95vh
+    vertical-align: middle
+    width: 0
+
+  &--deviceMode-mobile[class]
+    &:before
+      max-height: 450px
+
+
++b(page)
+  &[class]
+    box-shadow: 0 2px 18px rgba(0, 0, 0, 0.3)
+    background-color: #fff
+    border-radius: 6px
+    display: inline-block
+    margin: 40px auto
+    vertical-align: middle
+    white-space: normal
+    text-align: left
+
+  &.-theme-default
+    box-sizing: border-box
+    max-width: calc(100% - 60px)
+    padding: 30px
+    > [class]
+      max-width: 100%
+
+  &--deviceMode-mobile.-theme-default
+    max-width: calc(100% - 20px)
+    padding: 20px
+    margin: 10px auto
+
+  &.-theme-login
+    padding: 45px 90px
+    max-width: 550px
+    box-sizing: border-box
+
+  &[class]
+    -webkit-animation: #{$b}__anm-show 0.3s ease-out 0s 1 normal
+    animation: #{$b}__anm-show 0.3s ease-out 0s 1 normal
+
+
++b(buttonClose)
+  position: relative
+
+
+@keyframes #{$b}__anm-show
+  from
+    transform: perspective(100px) translate3d(0px, 0px, 4px)
+    transform-origin: 50% 10% 0
+    opacity: 0
+  to
+    transform: perspective(100px) translate3d(0px, 0px, 0px)
+    transform-origin: 50% 10% 0
+    opacity: 1
+

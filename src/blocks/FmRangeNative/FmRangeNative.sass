@@ -1,0 +1,182 @@
+@import ../inc.sass
+$b: 'FmRangeNative'
+
+
+
+$FmRangeNative_size: 26px !default
+$FmRangeNative_heightLine: 6px !default
+$FmRangeNative_colorThumb: #12cdfc !default
+$FmRangeNative_colorFocus: #0995c3 !default
+$FmRangeNative_colorLine: #ededed !default
+
+
+
++block
+  box-sizing: border-box
+  position: relative
+
+  &.-showButtons
+    padding-right: #{$FmRangeNative_size + 10px}
+    padding-left: #{$FmRangeNative_size + 10px}
+
+
++b(box)
+  position: relative
+
++b(line)
+  background-color: $FmRangeNative_colorLine
+  pointer-events: none
+  position: absolute
+  margin: auto
+  height: $FmRangeNative_heightLine
+  bottom: 0
+  right: 1px
+  left: 1px
+  top: 0
+  border-radius: $FmRangeNative_heightLine
+  border-right: #{$FmRangeNative_size / 2} solid rgba(#000, 0)
+  border-left: #{$FmRangeNative_size / 2} solid rgba(#000, 0)
+
+  &.-focus
+    background-color: darken($FmRangeNative_colorLine, 8%)
+
++b(value)
+  border-radius: inherit
+  background: $FmRangeNative_colorThumb
+  position: absolute
+  margin: auto
+  height: inherit
+  bottom: 0
+  left: -#{$FmRangeNative_size / 2}
+  top: 0
+  padding-left: #{$FmRangeNative_size / 2}
+
+  &:before
+    //transform: translate(50%, -50%)
+    position: absolute
+    content: ""
+    right: -#{$FmRangeNative_size / 2}
+    top: calc(50% - #{$FmRangeNative_size / 2})
+
+    background-color: inherit
+    border-radius: $FmRangeNative_size
+    box-sizing: border-box
+    box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.2)
+    border: 3px solid #fff
+    height: $FmRangeNative_size
+    width: $FmRangeNative_size
+    cursor: pointer
+
+  &.-focus, &.-active
+    background-color: darken($FmRangeNative_colorThumb, 8%)
+
+
+=track
+  box-sizing: border-box
+  height: $FmRangeNative_size
+  width: 100%
+  cursor: pointer
+  box-shadow: 0 none
+  background: rgba(#000, 0)
+  border-radius: 0px
+  border: 0px none
+
+=thumb
+  background-color: rgba(#fff, 0)
+  border-radius: #{$FmRangeNative_size / 2}
+  padding: 0
+  border: 0 none
+  height: $FmRangeNative_size
+  width: $FmRangeNative_size
+  cursor: pointer
+
++b(input) // input[type=range]
+  -webkit-appearance: none
+  background-color: transparent
+  box-sizing: border-box
+  font-size: 10px
+  position: relative
+  overflow: hidden
+  display: block
+  padding: 0
+  height: $FmRangeNative_size
+  width: 100%
+  opacity: 0
+  margin: 0
+
+  &:focus
+    outline: none
+
+  &::-webkit-slider-runnable-track
+    +track
+  &::-moz-range-track
+    +track
+  &::-ms-track
+    +track
+
+  &::-webkit-slider-thumb
+    -webkit-appearance: none
+    +thumb
+  &::-moz-range-thumb
+    +thumb
+  &::-ms-thumb
+    +thumb
+
+  &::-ms-fill-lower
+    display: none
+  &::-ms-fill-upper
+    display: none
+
+
++b(button)
+  position: absolute
+  padding: 0
+
+  background-color: #fff
+  border-radius: $FmRangeNative_size
+  box-sizing: border-box
+  //box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.2)
+  border: 2px solid rgba($FmRangeNative_colorLine, 0)
+  height: $FmRangeNative_size
+  width: $FmRangeNative_size
+  cursor: pointer
+  top: calc(50% - #{$FmRangeNative_size / 2})
+
+
+
+  &.-focus-no:hover
+    border-color: $FmRangeNative_colorLine
+
+  &.-focus
+    border-color: darken($FmRangeNative_colorLine, 8%)
+
+
+  &:focus
+    outline: none
+
+  &::-moz-focus-inner
+    padding: 0
+    border: 0
+
+  &:before, &:after
+    background-color: $FmRangeNative_colorThumb
+    transform: translate(-50%, -50%)
+    position: absolute
+    content: ""
+    height: $FmRangeNative_heightLine
+    width: 3 * $FmRangeNative_heightLine
+
+  &.-focus
+    &:before, &:after
+      background-color: darken($FmRangeNative_colorThumb, 7%)
+
+  &.-icon-minus
+    left: 0
+  &.-icon-plus
+    right: 0
+
+  &.-icon-minus:after
+    display: none
+  &.-icon-plus:after
+    transform: translate(-50%, -50%) rotate(90deg)
+

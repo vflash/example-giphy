@@ -1,0 +1,169 @@
+@import ../inc.sass
+$b: 'FmButtonLabel'
+
+$FmButtonLabel_skinDefaultColor: #0bbaf4 !default
+$FmButtonLabel_skinDefaultActive: darken($FmButtonLabel_skinDefaultColor, 12%) !default
+$FmButtonLabel_skinDefaultHover: darken($FmButtonLabel_skinDefaultColor, 6%) !default
+$FmButtonLabel_skinDefaultDisabledColor: #FFF !default
+$FmButtonLabel_skinDefaultDisabledBg: #67c6e6 !default
+
+$FmButtonLabel_heightMedium: 46px !default
+$FmButtonLabel_heightLarge: 56px !default
+$FmButtonLabel_heightSmall: 36px !default
+
+
++block
+  +userSelectNone
+  vertical-align: middle
+  box-sizing: border-box
+  position: relative
+  display: inline-block
+  line-height: #{$FmButtonLabel_heightMedium - 1px}
+  height: $FmButtonLabel_heightMedium
+  cursor: pointer
+  padding: 0 20px
+
+  background-color: #FFF
+  border-radius: #{$FmButtonLabel_heightMedium / 2}
+  border: solid 1px transparent
+
+  text-decoration: none
+  text-transform: uppercase
+  letter-spacing: 0.5px
+  font-family: inherit
+  text-align: center
+  font-weight: 400
+  font-size: 20px
+  outline: 0 none
+  color: #FFF
+
+  white-space: nowrap
+
+
+  &::-moz-focus-inner
+    padding: 0
+    border: 0
+
+  &.-size-large
+    border-radius: #{$FmButtonLabel_heightLarge / 2}
+    font-weight: 600
+    font-size: 18px
+    line-height: #{$FmButtonLabel_heightLarge - 2px}
+    height: $FmButtonLabel_heightLarge
+
+  &.-size-small
+    font-weight: bold
+    font-size: 12px
+    line-height: #{$FmButtonLabel_heightSmall - 2px}
+    height: $FmButtonLabel_heightSmall
+
+  &--mode-DS-0-D
+    background-color: $FmButtonLabel_skinDefaultColor
+    box-shadow: 0 5px 10px 0 rgba(64, 106, 128, 0.3)
+    color: #FFF
+    &:hover, &.-focus
+      background-color: $FmButtonLabel_skinDefaultHover
+
+    &.-active:not(.-disabled)
+      background-color: $FmButtonLabel_skinDefaultActive
+      box-shadow: 0 4px 8px 0 rgba(64, 106, 128, 0.26)
+
+
+  &--mode-DS-0-L
+    background-color: #FFF
+    border-color: $FmButtonLabel_skinDefaultColor
+    color: $FmButtonLabel_skinDefaultColor
+
+    &:hover, &:focus
+      background-color: #f5fcfe
+      border-color: $FmButtonLabel_skinDefaultHover
+      color: $FmButtonLabel_skinDefaultHover
+
+  &--mode-DS-0-R
+    background-color: #FFF
+    border-color: #d0021b
+    color: #d0021b
+
+    &:hover, &:focus
+      background-color: #f5fcfe
+      border-color: #d0021b
+      color: #d0021b
+
+  &--mode-DS-1-D
+    background-color: $FmButtonLabel_skinDefaultDisabledBg
+    color: $FmButtonLabel_skinDefaultDisabledColor
+
+  &--mode-DS-1-L
+    background-color: #FFF
+    border-color: #aedff0
+    color: #aedff0
+
+  &--mode-DS-1-R
+    background-color: #FFF
+    border-color: #d0021b
+    color: #d0021b
+
+  &.-wait.-skin-default
+    $ga: rgba(#FFF, 0.07)
+    $go: rgba(#FFF, 0)
+    background-image: linear-gradient(45deg, #{$ga} 0%, #{$ga} 25%, #{$go} 25%, #{$go} 50%, #{$ga} 50%, #{$ga} 75%, #{$go} 75%, #{$go} 100%)
+    background-color: $FmButtonLabel_skinDefaultHover
+    background-size: 80px 80px
+    animation: b(progress) 0.8s linear 0s infinite normal
+
+  &.-wait.-skin-light
+    $ga: rgba($FmButtonLabel_skinDefaultHover, 0.07)
+    $go: rgba($FmButtonLabel_skinDefaultHover, 0)
+    background-image: linear-gradient(45deg, #{$ga} 0%, #{$ga} 25%, #{$go} 25%, #{$go} 50%, #{$ga} 50%, #{$ga} 75%, #{$go} 75%, #{$go} 100%)
+    background-size: 80px 80px
+    animation: b(progress) 0.8s linear 0s infinite normal
+
+  &.-wait.-skin-red
+    $ga: rgba(#d0021b, 0.07)
+    $go: rgba(#d0021b, 0)
+    background-image: linear-gradient(45deg, #{$ga} 0%, #{$ga} 25%, #{$go} 25%, #{$go} 50%, #{$ga} 50%, #{$ga} 75%, #{$go} 75%, #{$go} 100%)
+    background-size: 80px 80px
+    animation: b(progress) 0.8s linear 0s infinite normal
+
+@keyframes #{b(progress)}
+  from
+    background-position: 0px 0
+  to
+    background-position: 80px 0
+
++b(icon)
+  vertical-align: -4px
+  margin-right: 12px
+  display: inline-block
+  height: 16px
+  width: 16px
+
+  &--size-medium
+    margin-right: 15px
+
+  background-repeat: no-repeat
+  background-position: 50% 50%
+
+  &--i-printSmall
+    //background-image: url("/src/images/icon-print-small.svg")
+    background-size: 14px auto
+
+  &--i-print
+    //background-image: url("/src/images/icon-print.svg")
+    background-size: 26px auto
+    vertical-align: -8px
+    height: 28px
+    width: 26px
+
+  &--i-download
+    //background-image: url("/src/images/icon-download.svg")
+    background-size: 15px auto
+    vertical-align: -3px
+    height: 18px
+    width: 15px
+
+  &--i-calc
+    //+icon('/src/images/icon-calculator.svg')
+    height: 24px
+    width: 18px
+

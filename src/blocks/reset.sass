@@ -1,0 +1,44 @@
+@import ./inc.sass
+
+$_appBackground: #fff !default
+$_appFontFamily: 'Avenir Next Cyr' !default
+$_appFontWeight: $fontWeight !default
+$_appColorText: $colorText !default
+$_appFontSize: $fontSize !default
+
+
+html
+  background-color: $_appBackground
+  overflow-x: hidden
+  overflow-y: scroll
+  margin: 0
+
+  overflow-anchor: none
+  font-size: #{10 * $px}
+
+  &.-viewport-tablet-landscape
+    font-size: calc(1000vw / 1024)
+  &.-viewport-tablet-portrait
+    font-size: calc(1000vw / 768)
+  &.-viewport-mobile-landscape
+    font-size: calc(1000vw / 700)
+  &.-viewport-mobile-portrait
+    font-size: calc(1000vw / 500)
+
+body
+  -moz-osx-font-smoothing: grayscale
+  -webkit-font-smoothing: antialiased
+
+  font-family: '#{$_appFontFamily}', 'Apple Color Emoji', 'Segoe UI Emoji', arial, sans-serif
+  line-height: 1.2
+  font-weight: $_appFontWeight
+  font-size: $_appFontSize
+  color: $_appColorText
+
+  background-color: inherit
+  min-height: 100vh
+  padding: 0
+  margin: 0
+
+input:-webkit-autofill
+  transition: background-color 5000s ease-in-out 5000s

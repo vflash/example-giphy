@@ -1,0 +1,81 @@
+$px: 3pt/4
+@function b($el)
+  @return #{$b}__#{$el}
+
+=block
+  .#{$b}
+    @content
+
+=b($el: '')
+  @if $el != ''
+    .#{$b + __ + $el}
+      @content
+  @else
+    .#{$b}
+      @content
+
+
+@mixin clearfix
+  &:after
+    content: ""
+    display: table
+    clear: both
+
+=userSelectNone
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+
+=image($url, $size: contain)
+  @if $size != 'contain' and $size != 'cover'
+    $size: #{$size} auto
+
+  background-image: url($url)
+  background-size: $size
+
+=icon($url: '', $size: contain)
+  background-position: 50% 50%
+  background-repeat: no-repeat
+  @if $url != ''
+    +image($url, $size)
+
+
+// ----------------------------------------------------------------------
+
+$paddingPage: 30px
+
+$colorError: #d0011b
+$colorText: #000
+$colorMark: #12cdfc
+$fontWeight: 500
+$fontSize: 16px
+
+
+$FmSwitch_backgroundColor: #ededed
+$FmSwitch_backgroundCheck: $colorMark
+
+$FmInput_bgColor: #ededed
+$FmInput_bgHover: #e4e4e4
+
+$FmSelectNative_bgColor: #ededed
+$FmSelectNative_bgHover: #e4e4e4
+
+
+
+=textDefault
+  font-weight: 500
+  font-size: 14px
+
+=textH1
+  font-weight: bold
+  font-size: 36px
+=textH2
+  font-weight: 500
+  font-size: 24px
+=textH3
+  font-weight: 500
+  font-size: 20px
+
+
+// ----------------------------------------------------------------------

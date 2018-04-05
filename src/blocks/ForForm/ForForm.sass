@@ -1,0 +1,336 @@
+@import ../inc.sass
+$b: 'ForForm'
+
++block
+
+
++b(BoxPage)
+  background-color: #fff
+  border-radius: 4px
+  box-shadow: 0 10px 20px 0 rgba(#406a80, 0.1)
+  position: relative
+  padding: 40px 70px 40px
+
+  &--deviceMode-mobile
+    box-shadow: 0 10px 20px 0 rgba(#406a80, 0.03)
+    padding: 25px
+
+  &:not(:first-child)
+    margin-top: 25px
+
++b(Box)
+  background-color: #fff
+  border-radius: 4px
+  box-shadow: 0 10px 20px 0 rgba(#406a80, 0.1)
+  position: relative
+  padding: 30px
+
+  &:not(:first-child)
+    margin-top: 30px
+
++b(H1)
+  word-break: break-word
+  +textH1
+
+  &:not(:last-child)
+    margin-bottom: 22px
+
+  &:not(:first-child)
+    margin-top: 50px
+
++b(H2)
+  +textH2
+
+  &:not(:last-child)
+    margin-bottom: 15px
+
+  &--indent:not(:first-child)
+    margin-top: 35px
+
++b(H3)
+  +textH3
+  &:not(:last-child)
+    margin-bottom: 3px
+
+  &--indent:not(:first-child)
+    margin-top: 25px
+
+  &.x-label
+    margin: -2px 0 6px
+
+
++b(Block)
+  &--level-1:not(:first-child)
+    margin-top: 50px
+
+  &--level-2:not(:first-child)
+    margin-top: 25px
+
++b(Sub)
+  border-radius: 6px
+  box-shadow: 0 0 0 1px #d9e7ee inset
+  padding: 20px
+
+  &.-mark
+    background-color: #fdffff
+    box-shadow: 0 0 0 1px #d9e7ee inset
+
+  &.-error
+    box-shadow: 0 0 0 1px rgba(#d0011b, 0.7) inset
+
+  &:not(:first-child)
+    margin-top: 25px
+
+  &Body
+    position: relative
+
++b(Hr)
+  position: relative
+  margin: 30px 0
+  min-height: 1 * $px
+  height: 1px
+  color: #ededed
+
+  &:first-child
+    margin-top: 0
+
+  &:empty
+    background-color: currentColor
+
+  &:not(:empty)
+    align-items: center
+    display: flex
+    width: 100%
+
+  &:not(:empty):before
+    background-color: currentColor
+    content: ""
+    height: 1px
+    width: 100%
+
+  &Box
+    color: $colorText
+    white-space: nowrap
+    margin-left: 15px
+
+
++b(Right)
+  align-items: center
+  display: flex
+
+  &--indent-large:not(:first-child)
+    margin-top: 40px
+
+  &--indent-hr:not(:first-child)
+    margin-top: 30px
+
+  &--indent-medium:not(:first-child)
+    margin-top: 25px
+
+  &--indent-small:not(:first-child)
+    margin-top: 12px
+
+  &--indent-mini:not(:first-child)
+    margin-top: 5px
+
+  &--align-baseline
+    align-items: baseline
+
+  &Cell
+    max-width: 100%
+    &--nowrap
+      white-space: nowrap
+    &:first-child
+      //width: calc(100% - 30px)
+      margin-right: 20px
+      flex: auto
+
+
+
++b(Row)
+  &--indent-large:not(:first-child)
+    margin-top: 40px
+
+  &--indent-hr:not(:first-child)
+    margin-top: 30px
+
+  &--indent-medium:not(:first-child)
+    margin-top: 25px
+
+  &--indent-small:not(:first-child)
+    margin-top: 12px
+
+  //&--one-no
+    white-space: nowrap
+  //&--size-2
+    white-space: nowrap
+
++b(RowBox)
+  position: relative
+
+  &:not(.-orie-vertical)
+    display: flex
+
+    .-vr:before
+      content: ""
+      position: absolute
+      bottom: 0
+      right: 0
+      left: 0
+      top: 0
+      margin: 0 auto
+      width: 1px
+      background-color: #d9e7ee
+
+
++b(RowLabel)
+  margin-bottom: 15px
+  font-weight: 500
+  font-size: 18px
+  color: #232f34
+  max-width: 460px
+
+
++b(Cell)
+  flex-grow: 1
+  margin: 0 15px
+  width: 50%
+
+  &.-large
+    margin: 0 30px
+
+  &:first-child
+    margin-left: 0
+    &.-centerLine:not(.-orie-vertical)
+      border-right: 0.1rem solid #d9e7ee
+      margin-right: 0
+      padding-right: 15px
+      &.-large
+        padding-right: 30px
+
+  &:last-child
+    margin-right: 0
+
+  &.-orie-vertical[class]
+    margin: 25px 0 0
+    width: auto
+  &.-orie-vertical:first-child
+    margin-top: 0
+
+
++b(Info)
+  vertical-align: middle
+  white-space: nowrap
+  min-height: 66px
+  display: inline-block
+  //width: 100%
+
+  //font-weight: 300
+  //font-size: 18px
+  color: rgba($colorText, 0.5)
+
+  &:before
+    vertical-align: middle
+    display: inline-block
+    min-height: inherit
+    content: ""
+    width: 0
+
+  &Box
+    vertical-align: middle
+    display: inline-block
+    white-space: normal
+    width: 100%
+
++b(ErrorText)
+  margin-top: 15px
+  font-weight: 500
+  font-size: 14px
+  color: #d0011b
+
+//+b(Error)
+  position: relative
+  height: 0
+
+  font-size: 14px
+  font-weight: 500
+  color: #d0011b
+
+  -webkit-animation: #{$b}__anmShowErr 0.2s ease 0s 1 normal
+  animation: #{$b}__anmShowErr 0.2s ease 0s 1 normal
+
+  &Box
+    position: absolute
+    max-width: 100%
+    top: 1px
+
++b(Error)
+  position: relative
+  margin: 1px 0 -17px
+
+  font-size: 14px
+  font-weight: 500
+  color: #d0011b
+
+  -webkit-animation: #{$b}__anmShowErr 0.2s ease 0s 1 normal
+  animation: #{$b}__anmShowErr 0.2s ease 0s 1 normal
+
+
+
+@keyframes #{$b}__anmShowErr
+  from
+    opacity: 0
+  to
+    opacity: 1
+
+
++b(TableLR)
+  &--indent-large:not(:first-child)
+    margin-top: 40px
+
+  &--indent-hr:not(:first-child)
+    margin-top: 30px
+
+  &--indent-medium:not(:first-child)
+    margin-top: 25px
+
+  &--indent-small:not(:first-child)
+    margin-top: 12px
+
++b(RightCell)
+  &--textAlign-right
+    text-align: right
+
++b(TableRows)
+  &Row
+    &:not(:first-child)
+      margin-top: 5px
+
+
+
++b(Table)
+  font-weight: 500
+  font-size: 16px
+
+  &:not(:first-child)
+    margin-top: 30px
+
+  &Header
+    margin: 0 0 14px 30px
+    &[class]
+      margin-bottom: 20px
+
+  > table
+    border-collapse: collapse
+    border-spacing: 0 0
+    table-layout: fixed
+    width: 100%
+    line-height: 2
+    color: rgba($colorText, 0.9)
+
+    td
+      vertical-align: top
+      padding: 0 30px 0 15px
+      &:first-child
+        padding-left: 30px
+

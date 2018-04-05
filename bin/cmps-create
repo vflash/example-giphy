@@ -1,0 +1,19 @@
+#!/bin/bash
+
+VAR_EXAMPLE=./src/blocks/ExampleComponent/ExampleComponent
+VAR_REPO=`cd ${0%/*}/..;pwd`
+VAR_NAME=$1
+VAR_DIR=./src/blocks/$VAR_NAME
+VAR_NF=$VAR_DIR/$VAR_NAME
+
+cd $VAR_REPO
+
+if [ -d $VAR_DIR ]
+then echo "Невозможно создать компонент. Файл существует"; exit;
+fi
+
+mkdir $VAR_DIR
+
+sed -e  "s/ExampleComponent/$VAR_NAME/" $VAR_EXAMPLE.sass > $VAR_NF.sass
+sed -e  "s/ExampleComponent/$VAR_NAME/" $VAR_EXAMPLE.js > $VAR_NF.js
+

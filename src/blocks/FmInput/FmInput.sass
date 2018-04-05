@@ -1,0 +1,279 @@
+=FmInput_icons {}
+
+@import ../inc.sass
+$b: 'FmInput'
+
+$FmInput_heightInputLabel: 66px !default
+$FmInput_widthRightBlock: 62px !default
+$FmInput_heightInput: 46px !default
+$FmInput_paddingTop: 18px !default
+$FmInput_colorMark: $colorMark !default
+$FmInput_colorText: $colorText !default
+$FmInput_borderColorFocus: #d9e7ee !default
+$FmInput_fontWeight: 300 !default
+$FmInput_bgColor: #eef5f8 !default
+$FmInput_bgHover: #e2ebf0 !default
+
+
+
+
++block
+  vertical-align: middle
+  display: inline-block
+  width: 100%
+  box-sizing: border-box
+  position: relative
+  background-color: $FmInput_bgColor
+  border-radius: 4px
+  border-color: transparent
+  height: $FmInput_heightInputLabel
+
+  font-weight: $FmInput_fontWeight
+  line-height: 1.2
+  font-size: 20px
+  color: $FmInput_colorText
+  cursor: text
+
+  transition: border-color .3s ease,  background-color .3s ease, color .3s ease
+
+  &:not(.-disabled):not(.-focus):hover
+    background-color: $FmInput_bgHover
+
+  &.-label-no
+    height: $FmInput_heightInput
+
+
+  &--modeON
+    &.-focus-no
+      background-color: $FmInput_bgColor
+    &.-focus
+      background-color: #FFF
+      border-color: $FmInput_borderColorFocus
+
+    &.-disabled
+      border-color: $FmInput_bgColor
+
+  &.-disabled
+    background-color: lighten(desaturate($FmInput_bgColor, 30%), 2%)
+    border-color: transparent
+    cursor: default
+
+  &.-error
+    $color: #d0011b
+    transition: border-color 0.2s
+    border-color: $color
+
+    &.-disabled
+      border-color: mix($FmInput_bgColor, $color, 50)
+
++b(border)
+  position: absolute
+  border-radius: inherit
+  border-color: inherit
+  border-style: solid
+  border-width: 1px
+  bottom: 0
+  right: 0
+  left: 0
+  top: 0
+
+=inputSize
+  $pad: 20px
+  background-color: transparent
+  box-sizing: border-box
+  position: absolute
+  padding: 0 $pad
+  border-radius: inherit
+  border: 0 none
+  height: inherit
+  width: 100%
+  left: 0
+  top: 0
+
+  font-family: inherit
+  font-weight: inherit
+  font-size: inherit
+  color: inherit
+
+  &.-label
+    line-height: #{$FmInput_heightInputLabel - $FmInput_paddingTop}
+    padding-top: $FmInput_paddingTop
+
+  &.-rightButton
+    border-right: #{$FmInput_widthRightBlock - 20px} solid rgba(#000, 0)
+
+  &.-rightPad
+    padding-right: #{$pad + 65px}
+
+  &.-icon-long
+    padding-left: 125px
+
+  &.-icon
+    padding-left: 48px
+
++b(placeholder)
+  +userSelectNone
+  +inputSize
+
+  text-overflow: ellipsis
+  white-space: nowrap
+  overflow: hidden
+
+
+  transition: opacity .2s ease-in-out
+  transform: scale(1)
+
+  &:before
+    vertical-align: bottom
+    display: inline-block
+    content: ""
+    height: 76%
+    width: 0
+
+  &--pale
+    opacity: 0.4
+
+  &--hide
+    transition: none
+    opacity: 0
+
+
++b(rightText)
+  +userSelectNone
+  +inputSize
+
+  text-overflow: ellipsis
+  white-space: nowrap
+  text-align: right
+  overflow: hidden
+  opacity: 0.4
+
+  transition: opacity .2s ease-in-out
+  transform: scale(1)
+  max-width: 60%
+  width: auto
+  right: 0
+  left: auto
+
+  &:after
+    vertical-align: bottom
+    display: inline-block
+    content: ""
+    height: 76%
+    width: 0
+
+  &.-rightPad
+    padding-right: 20px
+
+  &--hide
+    transition: none
+    opacity: 0
+
++b(input)
+  +inputSize
+  border-color: inherit
+  text-align: inherit
+  outline: 0 none
+  cursor: inherit
+
+  &::-webkit-calendar-picker-indicator
+    display: none
+
+  &::-ms-clear
+    display: none
+
+  &.-disabled
+    color: rgba($FmInput_colorText, 0.3)
+
+  &--modeOFF.-error-no
+    opacity: 0.12
+
++b(label)
+  +userSelectNone
+  text-overflow: ellipsis
+  white-space: nowrap
+  position: absolute
+  overflow: hidden
+  right: 20px
+  left: 20px
+  transition: all .2s ease-in-out
+
+  &.-rightButton
+    right: #{$FmInput_widthRightBlock - 10px}
+
+  &.-icon-long
+    left: 125px
+
+  &.-icon
+    left: 48px
+
+  &--modeOFF
+    transform: translateY(-50%)
+    color: rgba($FmInput_colorText, 0.5)
+    top: 50%
+
+    &.-disabled
+      color: rgba($FmInput_colorText, 0.3)
+
+  &--modeON
+    font-weight: 500
+    font-size: 14px
+    top: 8px
+    &:not(.-focus)
+      color: rgba($FmInput_colorText, 0.5)
+
+    &.-focus
+      color: $FmInput_colorMark
+
+    &.-disabled
+      color: rgba($FmInput_colorText, 0.3)
+
++b(labelButton)
+  +userSelectNone
+  margin-left: 10px
+  position: relative;
+
+  color: $FmInput_colorMark
+
+  &:after
+    position: absolute
+    content: ''
+    height: 1px
+    right: 0
+    left: 0
+    bottom: 1px
+    background-color: #0bbaf4
+    transition: all .2s ease
+    opacity: 0
+
+  &:hover
+    color: #3ec9f7
+
+    &:after
+      opacity: 0.3
+
++b(icon)
+  transform: translate(-50%, -50%)
+  position: absolute
+  height: 32px
+  width: 32px
+  left: 24px
+  top: 50%
+  +icon
+
+  &:not([href])
+    pointer-events: none
+
+  &--img-search
+    +image('./icon-search.svg', 19px)
+
+  +FmInput_icons
+
+
++b(rightButtonWrap)
+  display: inline
+  > [class]
+    transform: translate(50%, -50%)
+    position: absolute
+    right: #{$FmInput_widthRightBlock / 2}
+    top: 50%

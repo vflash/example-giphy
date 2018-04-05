@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        var _timeStartPage = +new Date();
+        var _timeServer = '<!--# echo var="date_gmt" -->';
+    </script>
+
+    <meta name="viewport" content="width=device-width">
+
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <title>Example Giphy</title>
+
+    <script>
+        var APP_PATH_SERVER_API = "<!--# echo var="app_path_server_api" default="" -->";
+        var APP_VERSION = "<!--# include file="version.txt" -->";
+    </script>
+
+
+    <link rel="stylesheet" type="text/css" href="/-static/xxx/css/main..css">
+    <script src="/-static/xxx/js/main..js"></script>
+
+</head>
+<body>
+    <div id="appbox"></div>
+    <script>
+        if (window.appInitDOM) appInitDOM();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+@import ../inc.sass
+$b: 'ViewApp'
+
+$ViewApp_blindBackground: rgba(#000, 0.3) !default;
+
++b(blind)
+  z-index: 60
+  background-color: $ViewApp_blindBackground
+  position: fixed
+  height: 120vh
+  width: 100vw
+  //bottom: 0
+  //right: 0
+  left: 0
+  top: 0
+
+  -webkit-will-change: opacity
+  will-change: opacity
+
+  &:not(.-hide)
+    -webkit-transition: opacity 0.35s ease-out
+    transition: opacity 0.35s ease-out
+    opacity: 1
+  &.-hide
+    -webkit-transition: opacity 0.3s ease-in, visibility 0.3s
+    transition: opacity 0.3s ease-in, visibility 0.3s
+    pointer-events: none
+    visibility: hidden
+    opacity: 0
+
+  @media print
+    display: none
+
+
++b(pagePopup)
+  z-index: 60
+
++b(floatBox)
+  z-index: 100
+  position: fixed
+  height: 0
+  width: 0
+  left: 0
+  top: 0
+
++b(loading)
+  position: fixed
+  z-index: 99
+  height: 0
+  left: 50%
+  top: 0
+
+  pointer-events: none
+  transition: opacity 0.5s ease-in
+
+  &:not(.-show)
+    transition: opacity 0.3s ease-out
+    opacity: 0
+
+  .text
+    transform: translate(-50%)
+    color: rgba(#fff, 0.5)
+    background-color: rgba(#000, 0.1)
+    border-radius: 0 0 3px 3px
+    font-size: 14px
+    padding: 2px 18px 3px
+

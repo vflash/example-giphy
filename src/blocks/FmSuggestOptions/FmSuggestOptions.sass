@@ -1,0 +1,33 @@
+@import ../inc.sass
+$b: 'FmSuggestOptions'
+
+$FmSuggestOptions_bgColorCursor: rgba($colorMark, 0.07) !default
+$FmSuggestOptions_borderColor: rgba(#d9e7ee, 0.7) !default
+
+
++block
+
++b(options)
+  border-radius: 4px
+  max-height: 238px
+  position: relative
+  overflow: hidden
+
++b(option)
+  min-height: 42px
+  padding: 3px 20px
+  cursor: pointer
+
+  justify-content: center
+  flex-direction: column
+  display: flex
+
+  &:not(:last-child)
+    border-bottom: 1px solid $FmSuggestOptions_borderColor
+
+  &.-cursor, &.-cursor:hover
+    background-color: $FmSuggestOptions_bgColorCursor
+
+  .text
+    white-space: normal
+    max-width: 100%

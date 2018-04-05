@@ -1,0 +1,43 @@
+#!/bin/bash
+
+VAR_REPO=`cd ${0%/*}/..;pwd`
+BUILD_NUMBER=${1:-none}
+VAR_BUILD=./out/build
+VERSION=`cat $VAR_REPO/version`
+
+cd $VAR_REPO
+
+rm -fr $VAR_BUILD
+mkdir -p $VAR_BUILD
+
+mkdir -p ./static/css
+mkdir -p ./static/inc
+mkdir -p ./static/js
+
+cp -rp ./static $VAR_BUILD/static
+cp -rp ./www $VAR_BUILD/www
+cp -rp ./configs/nginx-example-giphy.inc $VAR_BUILD/nginx-example-giphy.inc
+
+find $VAR_BUILD/www -name "index-sandbox*" -delete
+find $VAR_BUILD/ -name ".gitignore" -delete
+find $VAR_BUILD/ -name "*..css" -delete
+find $VAR_BUILD/ -name "*.map" -delete
+
+cat ./static/css/main..css | node ./bin/css2inc.js > $VAR_BUILD/static/css/main..css
+cat ./www/index.html | node ./bin/htmlTo.js > $VAR_BUILD/www/index.html
+
+
+VERSION=`cat $VAR_REPO/version`
+DATE=`date +%Y-%m-%dT%H:%M:%S%z`
+echo -n "VERSION: $VERSION, BUILD: $BUILD_NUMBER, DATE: $DATE" > $VAR_BUILD/www/version.txt
+
+
+## gzip-static
+for f in $(find $VAR_BUILD/static/ -iname '*.svg'); do gzip --best -c $f > $f.gz; done
+for f in $(find $VAR_BUILD/static/ -iname '*.css'); do gzip --best -c $f > $f.gz; done
+for f in $(find $VAR_BUILD/static/ -iname '*.js');  do gzip --best -c $f > $f.gz; done
+
+
+## tar
+cd $VAR_BUILD
+tar -czf ../$VERSION-$BUILD_NUMBER.tar.gz ./*

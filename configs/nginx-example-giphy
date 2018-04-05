@@ -1,0 +1,12 @@
+server {
+    server_name giphy.site;
+    listen  80;
+
+    set $app_path_server_api "/api";
+    set $site_path /home/{{user}}/site-example-giphy/out/build;
+
+    access_log  /var/log/example-giphy.access.log;
+    error_log  /var/log/example-giphy.error.log;
+
+    include /home/{{user}}/site-example-giphy/out/build/nginx-example-giphy.inc;
+}

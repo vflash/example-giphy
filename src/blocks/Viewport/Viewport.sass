@@ -1,0 +1,31 @@
+@import ../inc.sass
+$b: 'Viewport'
+
+
++block
+  position: relative
+  overflow: hidden
+  min-height: 100vh
+  //min-width: $minWidthViewport
+
+  //&.-noActiveWidth
+    width: 100vw
+
+  &.-noActive
+    pointer-events: none
+    position: fixed
+    //overflow-y: scroll
+    height: 100%
+    //bottom: 0
+    right: 0
+    left: 0
+    top: 0
+
+    @media print
+      display: none
+
+
++b(wrap)
+  overflow: hidden
+  //&.-noActiveWidth
+    width: 100vw

@@ -1,0 +1,104 @@
+@import ../inc.sass
+$b: 'FmButton'
+
+$FmButton_sizeMediumHeight: 66px !default
+$FmButton_sizeSmallHeight: 56px !default
+$FmButton_sizeMiniHeight: 46px !default
+
+$FmButton_sizeMediumFontWeight: bold !default
+$FmButton_sizeMediumFontSize: 16px !default
+
+$FmButton_sizeSmallFontWeight: bold !default
+$FmButton_sizeSmallFontSize: 16px !default
+
+$FmButton_sizeMiniFontWeight: bold !default
+$FmButton_sizeMiniFontSize: 16px !default
+
++block
+  position: relative
+  vertical-align: middle
+  box-sizing: border-box
+  display: inline-block
+  cursor: pointer
+  width: 100%
+
+  background-color: #12cdfc
+  border-radius: 4px
+  padding: 0 20px
+  border: 0 none
+
+  letter-spacing: 0.5px
+  font-family: inherit
+  font-weight: inherit
+  text-align: center
+  font-size: 16px
+  outline: 0 none
+  color: #FFF
+
+  &.-size-medium
+    font-weight: $FmButton_sizeMediumFontWeight
+    font-size: $FmButton_sizeMediumFontSize
+    height: $FmButton_sizeMediumHeight
+
+  &.-size-small
+    font-weight: $FmButton_sizeSmallFontWeight
+    font-size: $FmButton_sizeSmallFontSize
+    height: $FmButton_sizeSmallHeight
+
+  &.-size-mini
+    font-weight: $FmButton_sizeMiniFontWeight
+    font-size: $FmButton_sizeMiniFontSize
+    height: $FmButton_sizeMiniHeight
+
+  &::-moz-focus-inner
+    padding: 0
+    border: 0
+
+  &:not(.-disabled):not(.-active)
+    box-shadow: 0 5px 10px 0 rgba(#000, 0.12)
+
+  &:hover:not(.-disabled), &.-focus:not(.-disabled)
+    background-color: #0995c3
+
+  &.-active:not(.-disabled)
+    background-color: #077ba1
+    box-shadow: 0 4px 8px 0 rgba(#000, 0.08)
+
+  &.-disabled
+    background-color: #67c6e6
+    opacity: 0.5
+    cursor: default
+    > div
+      opacity: 0.9
+
+
+  &.-wait
+    $ga: rgba(#FFF, 0.07)
+    $go: rgba(#FFF, 0)
+    background-image: linear-gradient(45deg, #{$ga} 0%, #{$ga} 25%, #{$go} 25%, #{$go} 50%, #{$ga} 50%, #{$ga} 75%, #{$go} 75%, #{$go} 100%)
+    background-color: #0995c3
+    background-size: 80px 80px
+    animation: b(progress) 0.8s linear 0s infinite normal
+
+
+@keyframes #{b(progress)}
+  from
+    background-position: 0px 0
+  to
+    background-position: 80px 0
+
++b(wrap)
+  padding-top: 2px
+
+//+b(icon)
+  background-repeat: no-repeat
+  background-size: 27px auto
+  position: absolute
+  height: 27px
+  width: 33px
+
+  margin: auto
+  bottom: 0
+  top: 50%
+  right: 7px
+

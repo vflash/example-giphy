@@ -1,0 +1,116 @@
+@import ../inc.sass
+$b: 'FmSwitch'
+
+$FmSwitch_backgroundColor: #eef5f8 !default
+$FmSwitch_backgroundCheck: #0bbaf4 !default
+$FmSwitch_colorTextHover: #3ec9f7 !default
+
+$heightButton: 40px
+$widthButton: $heightButton + 36px
+$padButton: 3px
+$diameter: $heightButton - $padButton * 2
+
+$heightButtonSmall: 36px
+$widthButtonSmall: $heightButtonSmall + 30px
+$padButtonSmall: 3px
+$diameterSmall: $heightButtonSmall - $padButtonSmall * 2
+
+
++block
+  vertical-align: middle
+  white-space: nowrap
+  line-height: $heightButton
+  //font-weight: 300
+  max-width: 100%
+  font-size: 16px
+  display: inline-block
+  height: $heightButton
+  color: #232f34
+
+  &.-disabled
+    pointer-events: none
+    opacity: 0.6
+
+  &--size-small
+    line-height: $heightButtonSmall
+    height: $heightButtonSmall
+
++b(button)
+  vertical-align: top
+  box-sizing: border-box
+  position: relative
+  display: inline-block
+  height: $heightButton
+  cursor: pointer
+  width: $widthButton
+
+  background-color: $FmSwitch_backgroundColor
+  border-radius: #{$heightButton / 2}
+  outline: 0 none
+  padding: 0
+  border: 0 none
+
+  will-change: transform
+  transition: all .25s ease-in-out
+
+  &::-moz-focus-inner
+    padding: 0
+    border: 0
+
+  &:after
+    position: absolute
+    content: ''
+    height: $diameter
+    width: $diameter
+    margin: auto
+    bottom: 0
+    left: $padButton
+    top: 0
+
+    background-color: #fff
+    border-radius: 50%
+    box-shadow: 0 10px 20px 0 rgba(#406980,.1)
+
+    will-change: transform
+    transition: all .25s ease-in-out
+
+  &.-check:after
+    $x: $widthButton - $padButton * 2 - $diameter
+    transform: translateX($x)
+
+  &.-check
+    background-color: $FmSwitch_backgroundCheck
+
+  &--size-small
+    height: $heightButtonSmall
+    width: $widthButtonSmall
+    border-radius: #{$heightButtonSmall / 2}
+
+    &:after
+      height: $diameterSmall
+      width: $diameterSmall
+      left: $padButtonSmall
+
+    &.-check:after
+      $x: $widthButtonSmall - $padButtonSmall * 2 - $diameterSmall
+      transform: translateX($x)
+
++b(text)
+  +userSelectNone
+  white-space: normal
+  line-height: 1.2
+  margin-left: 18px
+  max-width: calc(100% - 94px)
+  display: inline-block
+  cursor: pointer
+
+  &:hover
+    color: $FmSwitch_colorTextHover
+
++b(button)
+  &:hover, &.-focus
+    ~
+      +b(text)
+        color: $FmSwitch_colorTextHover
+
+

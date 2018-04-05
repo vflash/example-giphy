@@ -1,0 +1,192 @@
+@import ../inc.sass
+$b: 'FmCalendarAp'
+
+$FmCalendarAp_bgHr: #d9e7ee !default
+
+$FmCalendarAp_YearsColorDisabled: rgba(#232f34, 0.3) !default
+$FmCalendarAp_YearsColorSelected: #0bbaf4 !default
+$FmCalendarAp_YearsBgHover: rgba(#5f696d, 0.1) !default
+
+$FmCalendarAp_DayColorOther: rgba(#000, 0.4) !default
+$FmCalendarAp_DayBgCurrent: rgba(#5f696d, 0.08) !default
+$FmCalendarAp_DayBgOther: rgba(#5f696d, 0.04) !default
+$FmCalendarAp_DayBgHover: rgba(#5f696d, 0.15) !default
+
+
+
++block
+  width: 280px
+
++b(header)
+  justify-content: space-between
+  align-items: center
+  margin-bottom: 10px
+  display: flex
+
++b(title)
+  position: relative
+  display: inline-block
+  text-transform: capitalize;
+  text-align: center
+  min-width: 80px
+  padding: 0 10px
+  cursor: pointer
+  line-height: 32px
+  height: 32px
+  top: 1px
+  +userSelectNone
+
+  &:hover
+    background-color: rgba(#5f696d, 0.05);
+
+
++b(button)
+  background-image: url("./arrow.svg")
+  background-repeat: no-repeat
+  background-size: 16px
+  background-position: 50% 50%
+  border-radius: 4px
+  display: inline-block
+  cursor: pointer
+  height: 32px
+  width: 32px
+
+  +userSelectNone
+
+  &.-right
+    transform: rotate(0turn);
+  &.-left
+    transform: rotate(0.5turn);
+  &:not(.-disabled):hover
+    background-color: rgba(#000, 0.03)
+
+  &.-disabled
+    opacity: 0.5
+    filter: grayscale(100%)
+    cursor: default
+
+
++b(box)
+  height: 260px
+
++b(monthsTable)
+  border-collapse: separate
+  border-spacing: 2px
+  table-layout: fixed
+  text-align: center
+  height: 100%
+  width: 100%
+  +userSelectNone
+
+  td
+    border-radius: 4px
+    border: 1px solid rgba(#000, 0)
+    +userSelectNone
+
+  td:not(.-disabled):hover
+    background-color: $FmCalendarAp_YearsBgHover
+    cursor: pointer
+
+  td:not(.-disabled).-selected
+    border-color: $FmCalendarAp_YearsColorSelected
+
+  td.-disabled
+    color: $FmCalendarAp_YearsColorDisabled
+
+  td.-today
+    font-weight: bold
+
+
+
++b(YearsTable)
+  border-collapse: separate
+  border-spacing: 2px
+  table-layout: fixed
+  text-align: center
+  height: 100%
+  width: 100%
+
+  +userSelectNone
+
+  td
+    border-radius: 4px
+    border: 1px solid rgba(#000, 0)
+    +userSelectNone
+
+  td:not(.-disabled):hover
+    background-color: $FmCalendarAp_YearsBgHover
+    cursor: pointer
+
+  td:not(.-disabled).-selected
+    border-color: $FmCalendarAp_YearsColorSelected
+
+  td.-disabled
+    color: $FmCalendarAp_YearsColorDisabled
+
+  td.-today
+    font-weight: bold
+
+
+
+
++b(monthTable)
+  border-collapse: separate
+  border-spacing: 2px
+  table-layout: fixed
+  text-align: center
+  height: 100%
+  width: 100%
+  +userSelectNone
+
+  td
+    position: relative
+
++b(monthHeader)
+  padding-bottom: 7px
+  font-size: 85%
+  height: 20px
+
++b(monthDay)
+  border-radius: 4px
+  position: relative
+  +userSelectNone
+
+  &:not(.-disabled).-m-current
+    background-color: $FmCalendarAp_DayBgCurrent
+
+  &:not(.-disabled).-m-other
+    background-color: $FmCalendarAp_DayBgOther
+  &.-m-other
+    color: $FmCalendarAp_DayColorOther
+
+  &:not(.-disabled):hover
+    background-color: $FmCalendarAp_DayBgHover
+    cursor: pointer
+
+  &[class].-selected
+    background-color: #0bbaf4;
+    color: #fff;
+
+  &[class].-today
+    font-weight: bold
+
+  .text
+    display: inline-block
+
+
++b(day)
+  $size: 36px
+  position: absolute
+  bottom: 2px
+  right: 2px
+  left: 2px
+  top: 2px
+
+  line-height: #{$size - 6px}
+  border-radius: 4px
+  box-sizing: border-box;
+  display: inline-block
+  cursor: pointer
+
+
+

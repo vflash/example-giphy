@@ -1,0 +1,166 @@
+@import ../inc.sass
+$b: 'BoxNear'
+
+$padSkinSelect: 4px
+$animTime: 0.25s
+$indent: 25px
+$pad: 15px
+
++block
+  transition: opacity ease-in $animTime
+  pointer-events: none
+  margin-right: 15px
+  position: fixed
+  &.-init-no
+    visibility: hidden
+
+  &.-show-no
+    transition: opacity ease-out $animTime, visibility $animTime
+    visibility: hidden
+    opacity: 0
+
+  &--skin-select
+    $animTime: 0.2s
+    transition: opacity ease-in $animTime
+    &.-show-no
+      transition: opacity ease-out $animTime, visibility $animTime
+
++b(box)
+  background-color: inherit
+  border-radius: inherit
+  position: relative
+
++b(content)
+  border-radius: inherit
+  overflow: hidden
+  min-height: 15px
+  min-width: 20px
+
+  &--skin-title
+    padding: 10px 25px
+
+  &--skin-select
+    border-radius: 4px
+    padding: 1px
+
+  &--skin-menu
+    border-radius: 4px
+
++b(wrap)
+  pointer-events: auto
+  position: relative
+  transition: transform ease-out $animTime
+
+  $deltaSkinSelect: 15px
+  $delta: 20px
+
+  &.-show-no
+    transition: transform ease-in $animTime
+
+  &--skin-title
+    color: #fff
+
+  &--skin-title,
+  &--skin-menu
+    &.-pos-bottomCenterRight,
+    &.-pos-bottomCenterLeft,
+    &.-pos-bottomCenter,
+    &.-pos-bottomRight,
+    &.-pos-bottomLeft
+      top: $pad
+      &.-show-no
+        transform: translateY($delta)
+
+
+    &.-pos-topCenterRight,
+    &.-pos-topCenterLeft,
+    &.-pos-topCenter,
+    &.-pos-topRight,
+    &.-pos-topLeft
+      top: -$pad
+      &.-show-no
+        transform: translateY(-$delta)
+
+    &.-pos-rightBottom,
+    &.-pos-rightCenter,
+    &.-pos-rightTop,
+      left: $pad
+      &.-show-no
+        transform: translateX($delta)
+
+    &.-pos-leftBottom,
+    &.-pos-leftCenter,
+    &.-pos-leftTop,
+      left: -$pad
+      &.-show-no
+        transform: translateX(-$delta)
+
+  &--skin-select
+    &.-pos-bottomLeft
+      top: $padSkinSelect
+      &.-show-no
+        transform: translateY($deltaSkinSelect)
+
+    &.-pos-topLeft
+      top: -$padSkinSelect
+      &.-show-no
+        transform: translateY(-$deltaSkinSelect)
+
+
+
++b(bgbox)
+  transform: scale(1)
+  position: absolute
+  bottom: 0
+  right: 0
+  left: 0
+  top: 0
+
+  &:after
+    content: ""
+    background-color: inherit
+    border-radius: inherit
+    position: absolute
+    bottom: 0
+    right: 0
+    left: 0
+    top: 0
+
+  &--skin-title
+    background-color: #4a4a4a
+    border-radius: 4px
+    box-shadow: 0 4px 10px -1px rgba(#000, 0.25)
+
+  &--skin-select
+    background-color: #fff
+    border-radius: 4px
+    //box-shadow: 0 10px 20px 0 rgba(#406a80, 0.1), 0 0 0 1px darken(#d9e7ee, 3%)
+    box-shadow: 0 10px 20px 0 rgba(#406a80, 0.1)
+    border: #{1*$px} solid darken(#d9e7ee, 3%)
+
+
+  &--skin-menu
+    background-color: #fff
+    border-radius: 4px
+    box-shadow: 0 4px 10px -1px rgba(#000, 0.25), 0 0 0 1px rgba(#000, 0.07)
+
++b(arrow)
+  background-color: inherit
+  position: absolute
+
+  box-shadow: 0 0 10px -1px rgba(#000, 0.2), 0 0 0 1px rgba(#000, 0.1)
+  transform: translate(-50%, -50%) rotate(45deg)
+  position: absolute
+  height: 10px
+  width: 10px
+
+  &.-pos-topCenter,
+  &.-pos-topRight,
+  &.-pos-topLeft
+    transform: translate(-50%, 50%) rotate(45deg)
+
+  &.-pos-bottomRight
+    top: 0
+
+  &.-pos-topCenter
+    bottom: 0

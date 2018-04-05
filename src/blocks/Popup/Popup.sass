@@ -1,0 +1,44 @@
+@import ../inc.sass
+$b: 'Popup'
+
+
++block
+  position: relative
+  background-color: #ffffff
+  border-radius: 6px
+  box-shadow: 0 4px 10px -1px rgba(#000, 0.4), 0 0 0 1px rgba(#000, 0.07)
+  padding: 0
+  margin: auto
+  width: 425px
+
+  box-sizing: border-box
+  max-width: inherit
+
+  //&--deviceMode-mobile
+    padding: 22px
+
+  &--padding
+    padding: 25px 34px
+
++b('close')
+  position: absolute
+  &--padding
+    right: 22px
+    top: 22px
+    box-shadow: none
+
++b('ContentHeader')
+  text-align: center
+  font-weight: 400
+  font-size: 17px
+  margin: 0 0 15px
+
++b('ContentBox')
+  line-height: 1.35
+  font-size: 17px
+  font-weight: 300
+  margin-bottom: 22px
+  text-align: center
+  &.-has-header
+    font-size: 15px
+

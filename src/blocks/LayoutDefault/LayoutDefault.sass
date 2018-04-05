@@ -1,0 +1,63 @@
+@import ../inc.sass
+$b: 'LayoutDefault'
+
+
++block
+  background-color: #f5f9fb
+  min-height: 100vh
+
+  &[class]
+    white-space: nowrap
+    text-align: center
+
+  &[class]:before
+    content: ""
+    display: inline-block
+    max-height: calc(100vh - 40px)
+    height: 95vh
+    vertical-align: middle
+    width: 0
+
+  &--deviceMode-mobile[class]
+    &:before
+      max-height: 450px
+
+
++b(page)
+  background-color: #fff
+  border-radius: 6px
+  display: inline-block
+  margin: 40px auto
+  vertical-align: middle
+  white-space: normal
+  text-align: left
+
+  box-sizing: border-box
+  padding: 45px 90px
+
+  border-radius: 8px
+  box-shadow: 0 10px 20px 0 rgba(64, 106, 128, 0.1)
+  overflow: hidden
+
+  animation: #{$b}__anm-show 1s ease 0s 1 normal
+
+  &--deviceMode-mobile
+    max-width: calc(100% - 20px)
+    padding: 35px 35px
+    margin: 10px auto
+
+  > [class]
+    max-width: 100%
+
+
+
++b(buttonClose)
+  position: relative
+
+
+@keyframes #{$b}__anm-show
+  from
+    opacity: 0
+  to
+    opacity: 1
+
