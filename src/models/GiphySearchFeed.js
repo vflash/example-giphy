@@ -19,7 +19,6 @@ function GiphySearchFeed(op) {
     var _countMinLoad = op.countMaxLoad || 10;
 
     var _loading = false;
-    var _waitsSync = []; // ожидаюшие синхронизации
     var _waits = []; // ожидаюшие
 
     var update = function() {
@@ -28,17 +27,11 @@ function GiphySearchFeed(op) {
     };
 
     expand(this, expansionEvent, {
-        timeSync: null, // time когда была синхронизация. только для чтения
-
         loaded: false,
         error: null, // ошибка [status, result] если при загрузке произошла ошибка
         depth: 0, // заказанная глубина загрузки
         feed: op.feed, // /api/giphy/gifs/search
         list: null, // null|[]
-
-        get waitSync() {
-            return !!_waitsSync.length;
-        },
 
         get options() { // параметры денты
             return urlParseSearch(this.feed);
@@ -67,91 +60,11 @@ function GiphySearchFeed(op) {
 
             return promise;
         },
-
-        sync: sync,
     });
 
-    function sync(time) {
-        if (+new Date() - model.timeSync < (+time || 60000)) {
-            return Promise.resolve([false]); // время еше не вышло
-        };
-
-        if (_loading && !_waitsSync.length) { // идет загрузка данных. синхронизация не возможна
-            return Promise.resolve([false]);
-        };
-
-        // опрашиваю у всех кому сколько требуется, или отменяем если кто-то против
-        // после всем сообшаю что обновил список
-
-        var promise = new Promise(resolve => {_waitsSync.push(resolve)});
-
-        if (_waitsSync.length === 1) {
-            let eventSync = {name: 'startSync', stop: false};
-            let length = null;
-
-            model.emit(eventSync, {
-                get length() {return length;},
-                set length(value) {
-                    if (length == null || +value > length) {
-                        length = +value || null;
-                    };
-                },
-                cansel: function() {
-                    eventSync.stop = true;
-                },
-            });
-
-            if (eventSync.stop) { // один из слушателей отменил синхронизацию
-                return Promise.resolve([false]);
-            };
-
-            _syncLoad(length || model.length || 15);
-        };
-
-        return promise;
-    };
-
-    function _syncDelay() { // пауза пока не пройдет синхронизация
-        return (_waitsSync.length
-            ? new Promise(resolve => {_waitsSync.push(resolve)})
-            : Promise.resolve([true])
-        );
-    };
-
-    async function _syncLoad(length) {
-        var [status, result] = await rest.get(
-            [model.feed, {limit: length}]
-        );
-
-        var waits = _waitsSync;
-        _waitsSync = [];
-
-        if (status !== true) {
-            end(false);
-            return;
-        };
-
-        var list = [].concat(result.data);
-
-        model.timeSync = +new Date();
-        model.loaded = list.length < length;
-        model.depth = list.length;
-        model.list = list;
-
-        model.emit('sync'); // сообшаем всем что прошла синхронизация
-        update();
-
-        end(true);
-
-        function end() {
-            waits.forEach(resolve => resolve([status]));
-        };
-    };
 
     // будем загружать пока не достигнем depth
     async function _load() {
-        await _syncDelay(); // ждем пока не закончится синхронизация
-
         var list = model.list;
 
         var offset = list ? list.length : 0;
@@ -172,10 +85,6 @@ function GiphySearchFeed(op) {
             _loading = false;
             _onError(status, result)
             return;
-        };
-
-        if (!offset) {
-            model.timeSync = +new Date();
         };
 
         var resultList = result.data;
